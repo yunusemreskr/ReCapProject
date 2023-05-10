@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ProductManager : IProductService
+    public class CarManager : ICarService
     {
         ICarDal _carDal;
 
-        public ProductManager(ICarDal carDal)
+        public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }

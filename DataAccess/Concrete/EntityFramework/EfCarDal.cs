@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : IEntityRepository<Car>
+    public class EfCarDal : IEntityRepository<Car, ReCapProjectDBContext>,ICarDal
     {
         public void Add(Car entity)
         {
@@ -44,7 +44,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ReCapProjectDBContext context = new ReCapProjectDBContext())
             {
-                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList(); 
+                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
             }
         }
 

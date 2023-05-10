@@ -10,13 +10,13 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        ProductManager productManager= new ProductManager(new InMemoryProductDal());
-        foreach (Car car in productManager.GetAll())
+        CarManager productManager= new CarManager(new EfCarDal());
+        foreach (var car in productManager.GetAll())
         {
             Console.WriteLine(car.Description+ " : " +car.DailyPrice + " TL");
         }
 
-        ICarDal carDal = new InMemoryProductDal();
+        //ICarDal carDal = new EfCarDal();
 
         Console.WriteLine("----------------------------------------------------");
 
@@ -24,7 +24,7 @@ internal class Program
 
         Console.WriteLine("----------------------------------------------------");
 
-        carDal.GetAll().ForEach(car => Console.WriteLine(car.Description));
+        //carDal.GetAll().ForEach(car => Console.WriteLine(car.Description));
 
 
     }
