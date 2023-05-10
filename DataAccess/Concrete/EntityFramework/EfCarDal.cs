@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,41 +12,50 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : IEntityRepository<Car>
     {
-        List<Car> _car;
-        public EfCarDal()
-        {
-            _car = new List<Car>
-            {
-                new Car {Id=1 , BrandId=1, ColorId=1, DailyPrice=950000, ModelYear=2022, Description="Bmw i20"},
-                new Car {Id=2 , BrandId=5, ColorId=2, DailyPrice=850000, ModelYear=2023, Description="Golf "},
-                new Car {Id=3 , BrandId=4, ColorId=4, DailyPrice=550000, ModelYear=2020, Description="Mercedes Sl"},
-                new Car {Id=4 , BrandId=3, ColorId=3, DailyPrice=750000, ModelYear=2023, Description="Togg"},
-            };
-
-        }
         public void Add(Car entity)
         {
-            _car.Add(entity);
+            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
         }
 
         public void Delete(Car entity)
         {
-            throw new NotImplementedException();
+            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
         public Car Get(Expression<Func<Car, bool>> filter)
         {
-            throw new NotImplementedException();
+            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            {
+                return context.Set<Car>().SingleOrDefault(filter);
+            }
         }
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            return _car.ToList();
+            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            {
+                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList(); 
+            }
         }
 
         public void Update(Car entity)
         {
-            throw new NotImplementedException();
+            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
