@@ -11,16 +11,26 @@ namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        IProductDal _productDal;
+        ICarDal _carDal;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(ICarDal carDal)
         {
-            _productDal = productDal;
+            _carDal = carDal;
         }
 
         public List<Car> GetAll()
         {
-            return _productDal.GetAll();
+            return _carDal.GetAll();
+        }
+
+        public List<Car> GetCarsByBrandId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

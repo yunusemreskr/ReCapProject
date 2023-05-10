@@ -15,7 +15,7 @@ internal class Program
             Console.WriteLine(car.Description+ " : " +car.DailyPrice + " TL");
         }
 
-        IProductDal productDal = new InMemoryProductDal();
+        ICarDal productDal = new InMemoryProductDal();
 
         Console.WriteLine("----------------------------------------------------");
 
