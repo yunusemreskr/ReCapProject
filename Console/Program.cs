@@ -10,21 +10,45 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        CarManager productManager= new CarManager(new EfCarDal());
-        foreach (var car in productManager.GetAll())
+        CarManager productManager = new CarManager(new EfCarDal());
+        foreach (var item in productManager.GetAll())
         {
-            Console.WriteLine(car.Description+ " : " +car.DailyPrice + " TL");
+            Console.WriteLine(item.Description + " : " + item.DailyPrice + " TL");
         }
 
-        //ICarDal carDal = new EfCarDal();
+        ICarDal carDal = new EfCarDal();
 
         Console.WriteLine("----------------------------------------------------");
 
-        //productDal.GetById(3).ForEach(car => Console.WriteLine("Model Açıklaması: " + car.Description));
+        carDal.GetAll().ForEach(car => Console.WriteLine("Model Açıklaması: " + car.Description));
 
         Console.WriteLine("----------------------------------------------------");
 
-        //carDal.GetAll().ForEach(car => Console.WriteLine(car.Description));
+        carDal.GetAll().ForEach(car => Console.WriteLine(car.Description));
+
+        //void GetAll(CarManager carManager1)
+        //{
+        //    foreach (var item in carManager1.GetAll())
+        //    {
+        //        Console.WriteLine(item.Description);
+        //    }
+        //}
+
+        CarManager carManager = new CarManager(new EfCarDal());
+        
+        Car car = new Car {
+            Id=10,
+            BrandId = 3,
+            ColorId = 2,
+            ModelYear = 2023,
+            DailyPrice = 452,
+            Description = "Renault"
+        };
+
+        carManager.Add(car);
+        
+        
+
 
 
     }

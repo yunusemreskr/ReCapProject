@@ -14,7 +14,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public void Add(Color entity)
         {
-            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -24,7 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public void Delete(Color entity)
         {
-            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Color Get(Expression<Func<Color, bool>> filter)
         {
-            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 return context.Set<Color>().SingleOrDefault(filter);
             }
@@ -42,7 +42,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
         {
-            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 return filter == null ? context.Set<Color>().ToList() : context.Set<Color>().Where(filter).ToList();
             }
@@ -50,7 +50,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public void Update(Color entity)
         {
-            using (ReCapProjectDBContext context = new ReCapProjectDBContext())
+            using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
