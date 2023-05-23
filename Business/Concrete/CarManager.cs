@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
+using Core.Entities;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +69,26 @@ namespace Business.Concrete
         public List<CarDetailDto> GetCarDetails()
         {
             return _carDal.GetCarDetails();
+        }
+
+        public void Update(Car car)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                var updatedEntity = context.Entry(car);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                var deletedEntity = context.Entry(car);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
     }
 }

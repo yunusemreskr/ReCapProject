@@ -29,9 +29,10 @@ internal class Program
         //DetailTest();
         //GetAll();
         //GetByColorId();
+        //Add();
 
-        Add();
-
+        CarManager carManager = new CarManager(new EfCarDal());
+        carManager.
     }
 
     private static void Add()
