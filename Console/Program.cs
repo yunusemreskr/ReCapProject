@@ -28,9 +28,16 @@ internal class Program
 
         //DetailTest();
         //GetAll();
+        //GetByColorId();
 
-        GetByColorId();
+        Add();
 
+    }
+
+    private static void Add()
+    {
+        CarManager carManager = new CarManager(new EfCarDal());
+        carManager.Add(new Car { Id = 6, BrandId = 2, ColorId = 3, DailyPrice = 750000, ModelYear = 2021, Description = "M4" });
     }
 
     private static void GetByColorId()
