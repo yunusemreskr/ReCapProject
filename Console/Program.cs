@@ -11,29 +11,52 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        CarManager productManager = new CarManager(new EfCarDal());
-        foreach (var item in productManager.GetAll())
+        //CarManager productManager = new CarManager(new EfCarDal());
+        //foreach (var item in productManager.GetAll())
+        //{
+        //    Console.WriteLine(item.Description + " : " + item.DailyPrice + " TL");
+        //}
+
+        //ICarDal carDal = new EfCarDal();
+
+        //Console.WriteLine("----------------------------------------------------");
+
+        //carDal.GetAll().ForEach(car => Console.WriteLine("Marka : " + car.Description + "   " + "Model Yılı: " + car.ModelYear));
+
+        //Console.WriteLine("----------------------------------------------------");
+
+
+        //DetailTest();
+        //GetAll();
+
+        GetByColorId();
+
+    }
+
+    private static void GetByColorId()
+    {
+        CarManager carManager = new CarManager(new EfCarDal());
+        foreach (var car in carManager.GetCarsByColorId(2))
         {
-            Console.WriteLine(item.Description + " : " + item.DailyPrice + " TL");
+            Console.WriteLine(car.Description);
         }
+    }
 
-        ICarDal carDal = new EfCarDal();
+    private static void GetAll()
+    {
+        CarManager carManager = new CarManager(new EfCarDal());
+        foreach (var car in carManager.GetAll())
+        {
+            Console.WriteLine(car.Description);
+        }
+    }
 
-        Console.WriteLine("----------------------------------------------------");
-
-        carDal.GetAll().ForEach(car => Console.WriteLine("Marka : " + car.Description + "   " + "Model Yılı: " + car.ModelYear));
-
-        Console.WriteLine("----------------------------------------------------");
-
-        
-        
-        
-        
-        
-        
-        
-
-
-
+    private static void DetailTest()
+    {
+        CarManager carManager = new CarManager(new EfCarDal());
+        foreach (var car in carManager.GetCarDetails())
+        {
+            Console.WriteLine("Marka : " + car.CarName + "-" + car.BrandName + "  " + "Renk : " + car.ColorName + "  " + "Fiyat : " + car.DailyPrice);
+        }
     }
 }
