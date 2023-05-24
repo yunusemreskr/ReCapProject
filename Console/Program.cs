@@ -31,8 +31,16 @@ internal class Program
         //GetByColorId();
         //Add();
 
-        CarManager carManager = new CarManager(new EfCarDal());
-        carManager.
+        GetCarsByColorId();
+    }
+
+    private static void GetCarsByColorId()
+    {
+        ColorManager colorManager = new ColorManager(new EfColorDal());
+        foreach (var color in colorManager.GetCarsByColorId(3))
+        {
+            Console.WriteLine(color.ColorName);
+        }
     }
 
     private static void Add()
