@@ -41,14 +41,15 @@ namespace Business.Concrete
 
         
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
+            
         }
 
-        public Brand GetCarsByBrandId(int id)
-        {
-            return _brandDal.Get(b=>b.BrandId == id);
+        public IDataResult<Brand> GetCarsByBrandId(int id)
+        {            
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));            
         }
 
         

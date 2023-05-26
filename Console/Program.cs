@@ -33,18 +33,32 @@ internal class Program
         //Add();
         //GetCarsByColorId();
         //BrandAdd();
+        //ColorAdd();
 
+
+        BrandManager brandManager = new BrandManager(new EfBrandDal());
+        var result = brandManager.GetCarsByBrandId(1);
+        Console.WriteLine(result.Data.BrandName);
+        
+
+
+
+
+
+    }
+
+    private static void ColorAdd()
+    {
         ColorManager colorManager = new ColorManager(new EfColorDal());
-        var result3 = colorManager.Add(new Color{ColorId=3, ColorName= "Mavi" });
-        if(result3 == null) 
+        var result3 = colorManager.Add(new Color { ColorId = 3, ColorName = "Mavi" });
+        if (result3 == null)
         {
             Console.WriteLine(result3.Message);
         }
-        else 
+        else
         {
-            Console.WriteLine(result3.Message); 
+            Console.WriteLine(result3.Message);
         }
-
     }
 
     private static void BrandAdd()
@@ -89,7 +103,7 @@ internal class Program
     private static void GetByColorId()
     {
         CarManager carManager = new CarManager(new EfCarDal());
-        foreach (var car in carManager.GetCarsByColorId(2))
+        foreach (var car in carManager.GetCarsByColorId(2).Data)
         {
             Console.WriteLine(car.Description);
         }
@@ -98,7 +112,7 @@ internal class Program
     private static void GetAll()
     {
         CarManager carManager = new CarManager(new EfCarDal());
-        foreach (var car in carManager.GetAll())
+        foreach (var car in carManager.GetAll().Data)
         {
             Console.WriteLine(car.Description);
         }
@@ -107,7 +121,7 @@ internal class Program
     private static void DetailTest()
     {
         CarManager carManager = new CarManager(new EfCarDal());
-        foreach (var car in carManager.GetCarDetails())
+        foreach (var car in carManager.GetCarDetails().Data)
         {
             Console.WriteLine("Marka : " + car.CarName + "-" + car.BrandName + "  " + "Renk : " + car.ColorName + "  " + "Fiyat : " + car.DailyPrice);
         }
