@@ -39,15 +39,16 @@ namespace Business.Concrete
 
         
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
+            
         }
 
-        public List<Color> GetCarsByColorId(int id)
+        public IDataResult<List<Color>> GetCarsByColorId(int id)
         {
-            return _colorDal.GetAll(c=>c.ColorId == id);
-        }
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c=>c.ColorId==id));            
+        }                               
 
         
     }
