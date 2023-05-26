@@ -30,15 +30,7 @@ namespace Business.Concrete
             }
         }
 
-        public void Delete(Brand brand)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var deletedEntity = context.Entry(brand);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
+        
 
         public List<Brand> GetAll()
         {
@@ -50,14 +42,6 @@ namespace Business.Concrete
             return _brandDal.Get(b=>b.BrandId == id);
         }
 
-        public void Update(Brand brand)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var updatedEntity = context.Entry(brand);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
+        
     }
 }

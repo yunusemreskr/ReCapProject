@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -29,9 +30,11 @@ internal class Program
         //DetailTest();
         //GetAll();
         //GetByColorId();
-        //Add();
+        Add();
+        //GetCarsByColorId();
+        
 
-        GetCarsByColorId();
+
     }
 
     private static void GetCarsByColorId()
@@ -45,8 +48,18 @@ internal class Program
 
     private static void Add()
     {
-        CarManager carManager = new CarManager(new EfCarDal());
-        carManager.Add(new Car { Id = 6, BrandId = 2, ColorId = 3, DailyPrice = 750000, ModelYear = 2021, Description = "M4" });
+        CarManager carManager = new CarManager(new EfCarDal()); 
+        var result = carManager.Add(new Car { Id = 7, BrandId = 3, ColorId = 4, DailyPrice = 0, ModelYear = 2023, Description = "Sssss" });
+
+        if (result.Success == false)
+        {
+            Console.WriteLine(result.Message);
+
+        }
+        else
+        {
+            Console.WriteLine(Messages.CarAdded);
+        }
     }
 
     private static void GetByColorId()

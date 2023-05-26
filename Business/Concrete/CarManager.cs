@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Entities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -22,12 +24,20 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            var result = IsAdd(car);
-            if (!result) return;
+
+            if (car.Description.Length < 2)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+            }
+            else if (car.DailyPrice == 0) 
+            {
+                return new ErrorResult(Messages.CarPriceInvalid);
+            }
             _carDal.Add(car);
-            Console.WriteLine("Add");
+
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public List<Car> GetAll()

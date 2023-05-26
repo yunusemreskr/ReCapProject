@@ -29,15 +29,7 @@ namespace Business.Concrete
             }
         }
 
-        public void Delete(Color color)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var deletedEntity = context.Entry(color);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
+        
 
         public List<Color> GetAll()
         {
@@ -49,14 +41,6 @@ namespace Business.Concrete
             return _colorDal.GetAll(c=>c.ColorId == id);
         }
 
-        public void Update(Color color)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var updatedEntity = context.Entry(color);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
+        
     }
 }
