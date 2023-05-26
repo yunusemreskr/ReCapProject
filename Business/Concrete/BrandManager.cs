@@ -37,14 +37,6 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarBrandInvalid);
             }
             
-
-            //if (brand.BrandId == result.BrandId) 
-            //{
-            //    return new ErrorResult(Messages.CarBrandInvalid);
-            //}
-            
-            //_brandDal.Add(brand);
-            //return new SuccessResult("Marka geçerli");
         }
 
         

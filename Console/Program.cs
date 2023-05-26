@@ -32,9 +32,9 @@ internal class Program
         //GetByColorId();
         //Add();
         //GetCarsByColorId();
+        //BrandAdd();
 
-
-        BrandAdd();
+        
 
     }
 
