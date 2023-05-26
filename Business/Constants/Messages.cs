@@ -9,8 +9,11 @@ namespace Business.Constants
     public static class Messages
     {
         public static string CarAdded = "Araç eklendi";
-        public static string CarNameInvalid = "Araç ismi geçersiz";
-        public static string CarPriceInvalid = "Araç fiyatı 0'dan büyük olmalıdır";
+        public static string CarNameInvalid = "Araç ismi en az 2 karakter olmalıdır";
+        public static string CarPriceInvalid = "Aracın günlük fiyatı 0'dan büyük olmalıdır.";
+        public static string CarBrandInvalid = "Lütfen yeni bir marka giriniz";
+        public static string CarColorInvalid = "Lütfen renk giriniz";
+        
 
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -20,14 +22,29 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
-            using (ReCapProjectContext context = new ReCapProjectContext())
+            var result = _brandDal.GetAll().SingleOrDefault(b => b.BrandId == brand.BrandId);
+            
+            if (result == null) 
             {
-                var addedEntity = context.Entry(brand);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
+                _brandDal.Add(brand);
+                return new SuccessResult("Marka eklendi");
+
             }
+            else
+            {
+                return new ErrorResult(Messages.CarBrandInvalid);
+            }
+            
+
+            //if (brand.BrandId == result.BrandId) 
+            //{
+            //    return new ErrorResult(Messages.CarBrandInvalid);
+            //}
+            
+            //_brandDal.Add(brand);
+            //return new SuccessResult("Marka geçerli");
         }
 
         

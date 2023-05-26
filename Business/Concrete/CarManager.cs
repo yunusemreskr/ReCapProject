@@ -56,26 +56,7 @@ namespace Business.Concrete
             return _carDal.GetAll(p => p.ColorId == id);
         }
 
-        private static bool IsAdd(Car car)
-        {
-            if (!string.IsNullOrEmpty(car.Description) && car.Description.Length >= 2)
-            {
-                if (car.DailyPrice > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine("Araba günlük fiyatı 0'dan büyük olmalıdır.");
-                    return false;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Araba ismi minimum 2 karakter olmalıdır");
-                return false;
-            }
-        }
+        
 
         public List<CarDetailDto> GetCarDetails()
         {

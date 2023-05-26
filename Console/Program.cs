@@ -30,11 +30,26 @@ internal class Program
         //DetailTest();
         //GetAll();
         //GetByColorId();
-        Add();
+        //Add();
         //GetCarsByColorId();
-        
 
 
+        BrandAdd();
+
+    }
+
+    private static void BrandAdd()
+    {
+        BrandManager brandManager = new BrandManager(new EfBrandDal());
+        var result2 = brandManager.Add(new Brand { BrandId = 10, BrandName = "Honda" });
+        if (result2.Success == false)
+        {
+            Console.WriteLine(result2.Message);
+        }
+        else
+        {
+            Console.WriteLine(result2.Message);
+        }
     }
 
     private static void GetCarsByColorId()
