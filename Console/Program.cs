@@ -58,7 +58,7 @@ internal class Program
         }
         else
         {
-            Console.WriteLine(Messages.CarAdded);
+            Console.WriteLine(result.Message);
         }
     }
 

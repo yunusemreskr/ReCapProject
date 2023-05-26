@@ -35,6 +35,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CarPriceInvalid);
             }
+            
             _carDal.Add(car);
 
             return new SuccessResult(Messages.CarAdded);
@@ -81,24 +82,6 @@ namespace Business.Concrete
             return _carDal.GetCarDetails();
         }
 
-        public void Update(Car car)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var updatedEntity = context.Entry(car);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Car car)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var deletedEntity = context.Entry(car);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
+       
     }
 }
