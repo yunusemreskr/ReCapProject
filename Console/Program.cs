@@ -34,14 +34,23 @@ internal class Program
         //GetCarsByColorId();
         //BrandAdd();
 
-        
+        ColorManager colorManager = new ColorManager(new EfColorDal());
+        var result3 = colorManager.Add(new Color{ColorId=3, ColorName= "Mavi" });
+        if(result3 == null) 
+        {
+            Console.WriteLine(result3.Message);
+        }
+        else 
+        {
+            Console.WriteLine(result3.Message); 
+        }
 
     }
 
     private static void BrandAdd()
     {
         BrandManager brandManager = new BrandManager(new EfBrandDal());
-        var result2 = brandManager.Add(new Brand { BrandId = 10, BrandName = "Honda" });
+        var result2 = brandManager.Add(new Brand { BrandId = 4, BrandName = "Mercedes" });
         if (result2.Success == false)
         {
             Console.WriteLine(result2.Message);
@@ -64,7 +73,7 @@ internal class Program
     private static void Add()
     {
         CarManager carManager = new CarManager(new EfCarDal()); 
-        var result = carManager.Add(new Car { Id = 7, BrandId = 3, ColorId = 4, DailyPrice = 0, ModelYear = 2023, Description = "Sssss" });
+        var result = carManager.Add(new Car { Id = 7, BrandId = 3, ColorId = 4, DailyPrice = 100000, ModelYear = 2023, Description = "S" });
 
         if (result.Success == false)
         {

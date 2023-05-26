@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -19,14 +21,20 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }   
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
-            using (ReCapProjectContext context = new ReCapProjectContext())
+            var result = _colorDal.GetAll().SingleOrDefault(c=>c.ColorId==color.ColorId);
+
+            if (result == null) 
             {
-                var addedEntity = context.Entry(color);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
+                _colorDal.Add(color);
+                return new SuccessResult(Messages.CarColorAdded);
             }
+            else
+            {
+                return new ErrorResult(Messages.CarColorInvalid);     
+            }
+               
         }
 
         

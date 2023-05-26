@@ -29,7 +29,7 @@ namespace Business.Concrete
             if (result == null) 
             {
                 _brandDal.Add(brand);
-                return new SuccessResult("Marka eklendi");
+                return new SuccessResult(Messages.CarBrandAdded);
 
             }
             else
