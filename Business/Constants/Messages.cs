@@ -18,5 +18,10 @@ namespace Business.Constants
         public static string CarColorAdded = "Renk eklendi";
         public static string MaintenanceTime = "Sistem bakımda daha sonra tekrar deneyiniz";
         public static string CarsListed = "Araçlar listelendi";
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserListed = "Kullanıcılar listelendi";
+        public static string UserDetailsListed = "Kullanıcı detayları listelendi";
+        public static string UserGet = "Kullanıcı getirildi";
+        public static string CostumerAdded = "Müşteri eklendi";
     }
 }

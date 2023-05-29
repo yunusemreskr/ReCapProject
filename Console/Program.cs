@@ -36,13 +36,16 @@ internal class Program
         //ColorAdd();
 
 
-        BrandManager brandManager = new BrandManager(new EfBrandDal());
-        var result = brandManager.GetCarsByBrandId(1);
-        Console.WriteLine(result.Data.BrandName);
-        
+        //BrandManager brandManager = new BrandManager(new EfBrandDal());
+        //var result = brandManager.GetCarsByBrandId(1);
+        //Console.WriteLine(result.Data.BrandName);
 
-
-
+        UserManager userManager = new UserManager(new EfUserDal());
+        //userManager.Add(new User {Id=1, FirstName="Yunus Emre" , LastName="Şeker", Email="123yunusemre@gmail.com" , Password="123456789" });
+        var result =userManager.Add(new User {Id=2, FirstName = "İrem", LastName = "Çoban", Email = "merirem123@gmail.com", Password = "987654321" });
+        Console.WriteLine(result.Message);
+        CostumerManager costumerManager = new CostumerManager(new EfCostumerDal());
+        //costumerManager.Add(new Costumer{UserId=1 , CompanyName="No211" });
 
 
     }
@@ -78,7 +81,7 @@ internal class Program
     private static void GetCarsByColorId()
     {
         ColorManager colorManager = new ColorManager(new EfColorDal());
-        foreach (var color in colorManager.GetCarsByColorId(3))
+        foreach (var color in colorManager.GetCarsByColorId(3).Data)
         {
             Console.WriteLine(color.ColorName);
         }
