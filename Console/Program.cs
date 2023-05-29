@@ -40,13 +40,24 @@ internal class Program
         //var result = brandManager.GetCarsByBrandId(1);
         //Console.WriteLine(result.Data.BrandName);
 
-        UserManager userManager = new UserManager(new EfUserDal());
+        //UserManager userManager = new UserManager(new EfUserDal());
         //userManager.Add(new User {Id=1, FirstName="Yunus Emre" , LastName="Şeker", Email="123yunusemre@gmail.com" , Password="123456789" });
-        var result =userManager.Add(new User {Id=2, FirstName = "İrem", LastName = "Çoban", Email = "merirem123@gmail.com", Password = "987654321" });
-        Console.WriteLine(result.Message);
-        CostumerManager costumerManager = new CostumerManager(new EfCostumerDal());
+        //var result =userManager.Add(new User {Id=2, FirstName = "İrem", LastName = "Çoban", Email = "merirem123@gmail.com", Password = "987654321" });
+        //Console.WriteLine(result.Message);
+
+
+        //CostumerManager costumerManager = new CostumerManager(new EfCostumerDal());
         //costumerManager.Add(new Costumer{UserId=1 , CompanyName="No211" });
 
+        RentalManager rentalManager = new RentalManager(new EfRentalDal());
+        //rentalManager.Add(new Rental {CarId=2, CostumerId=1, Id=1 , RentDate=DateTime.Now, ReturnDate=new DateTime(2023,06,05) });
+
+        var result =rentalManager.GetRentDetails();
+        foreach (var rental in result.Data)
+        {
+            Console.WriteLine(rental.CarId + " / " + rental.BrandName + " / " + rental.FirstName + " / " + rental.LastName + " / " +
+                rental.CompanyName + " / " +  rental.ReturnDate);
+        }
 
     }
 
