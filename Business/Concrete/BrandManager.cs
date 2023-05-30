@@ -43,12 +43,17 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
             
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());           
         }
 
         public IDataResult<Brand> GetCarsByBrandId(int id)
-        {            
+        {
+            var result = _brandDal.GetAll().FirstOrDefault(b => b.BrandId ==id);
+            if (result == null)
+            {
+                return new ErrorDataResult<Brand>("Bu id ile bir marka yok");
+            }
             return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));            
         }
 
