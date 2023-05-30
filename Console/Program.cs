@@ -67,7 +67,7 @@ internal class Program
         var result3 = colorManager.Add(new Color { ColorId = 3, ColorName = "Mavi" });
         if (result3 == null)
         {
-            Console.WriteLine(result3.Message);
+            Console.WriteLine(result3);
         }
         else
         {
