@@ -35,9 +35,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarColorInvalid);     
             }
                
-        }
-
-        
+        }        
 
         public IDataResult<List<Color>> GetAll()
         {
@@ -47,6 +45,11 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetCarsByColorId(int id)
         {
+            var result = _colorDal.GetAll().FirstOrDefault(c => c.ColorId == id);
+            if (result == null)
+            {
+                return new ErrorDataResult<List<Color>>("Geçersiz renk 'id' tekrar deneyiniz.");
+            }
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c=>c.ColorId==id));            
         }                               
 

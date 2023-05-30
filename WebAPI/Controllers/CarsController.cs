@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -72,6 +73,17 @@ namespace WebAPI.Controllers
                 //    return Ok(cars.CarName + " -- " + cars.BrandName + " -- " + cars.DailyPrice);
                 //}
                 
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(Car car)
+        {
+            var result = _carService.Add(car);
+            if (result.Success)
+            {
+                return Ok(result);
             }
             return BadRequest(result);
         }
