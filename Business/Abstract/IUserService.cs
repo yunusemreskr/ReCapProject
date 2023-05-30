@@ -12,7 +12,7 @@ namespace Business.Abstract
     public interface IUserService
     {
         IDataResult<List<User>> GetAll();
-        IDataResult<User> GetUsersByName(string name);
+        IDataResult<List<User>> GetUsersByName(string name);
         IDataResult<List<UserDetailDto>> GetUserDetails();
         IResult Add(User user);
     }

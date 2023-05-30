@@ -34,12 +34,16 @@ namespace WebAPI
             //AOP
             //Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container
             services.AddControllers();
+            
             services.AddSingleton<ICarService, CarManager>();
             services.AddSingleton<ICarDal, EfCarDal>();
             services.AddSingleton<IColorService, ColorManager>();
             services.AddSingleton<IColorDal, EfColorDal>();
             services.AddSingleton<IBrandService, BrandManager>();
             services.AddSingleton<IBrandDal, EfBrandDal>();
+            services.AddSingleton<IUserService, UserManager>();
+            services.AddSingleton<IUserDal, EfUserDal>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });

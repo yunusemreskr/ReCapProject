@@ -30,18 +30,32 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
+            if (DateTime.Now.Hour==05)
+            {
+                return new ErrorDataResult<List<User>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UserListed);
         }
 
         public IDataResult<List<UserDetailDto>> GetUserDetails()
         {
+            if (DateTime.Now.Hour == 00)
+            {
+                return new ErrorDataResult<List<UserDetailDto>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetUserDetails(),Messages.UserDetailsListed);
         }
 
-        public IDataResult<User> GetUsersByName(string name)
+        public IDataResult<List<User>> GetUsersByName(string name)
         {
+            var result = _userDal.GetAll().FirstOrDefault(u => u.FirstName == name);            
             
-            return new SuccessDataResult<User>(_userDal.Get(u=>u.FirstName == name), Messages.UserGet);    
+            if (result == null)
+            {
+                return new ErrorDataResult<List<User>>("Bu isimli bir kullanıcı yok");
+            }
+            
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(u=>u.FirstName == name), Messages.UserGet);    
 
         }
     }
