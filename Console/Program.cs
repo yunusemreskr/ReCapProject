@@ -27,7 +27,7 @@ internal class Program
         //Console.WriteLine("----------------------------------------------------");
 
 
-        //DetailTest();
+        DetailTest();
         //GetAll();
         //GetByColorId();
         //Add();

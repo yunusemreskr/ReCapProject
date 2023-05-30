@@ -9,6 +9,7 @@ using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==15)
+            if (DateTime.Now.Hour==16)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
@@ -52,11 +53,21 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.BrandId==id));
+            var result = _carDal.GetAll().FirstOrDefault(c => c.BrandId == id);
+            if (result == null)
+            {
+                return new ErrorDataResult<List<Car>>("Marka id geçersiz tekrar deneyiniz");
+            }
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id));
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
+            var result = _carDal.GetAll().FirstOrDefault(c=>c.ColorId == id);
+            if (result==null)
+            {
+                return new ErrorDataResult<List<Car>>("Geçersiz renk 'id' tekrar deneyiniz.");
+            }
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
             
         }
@@ -65,7 +76,8 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            if (DateTime.Now.Hour == 15)
+            
+            if (DateTime.Now.Hour == 18)
             {
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
             }
