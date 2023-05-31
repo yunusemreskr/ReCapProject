@@ -45,6 +45,8 @@ namespace WebAPI
             services.AddSingleton<IUserDal, EfUserDal>();
             services.AddSingleton<ICostumerService, CostumerManager>();
             services.AddSingleton<ICostumerDal, EfCostumerDal>();
+            services.AddSingleton<IRentalService, RentalManager>();
+            services.AddSingleton<IRentalDal, EfRentalDal>();
 
             services.AddSwaggerGen(c =>
             {
