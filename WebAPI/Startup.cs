@@ -43,6 +43,8 @@ namespace WebAPI
             services.AddSingleton<IBrandDal, EfBrandDal>();
             services.AddSingleton<IUserService, UserManager>();
             services.AddSingleton<IUserDal, EfUserDal>();
+            services.AddSingleton<ICostumerService, CostumerManager>();
+            services.AddSingleton<ICostumerDal, EfCostumerDal>();
 
             services.AddSwaggerGen(c =>
             {

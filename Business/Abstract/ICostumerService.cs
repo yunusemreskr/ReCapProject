@@ -12,7 +12,7 @@ namespace Business.Abstract
     public interface ICostumerService
     {
         IDataResult<List<Costumer>> GetAll();
-        IDataResult<Costumer> GetUsersByCompanyName(string companyname);
+        IDataResult<List<Costumer>> GetUsersByCompanyName(string companyname);
         IResult Add(Costumer costumer);
     }
 }

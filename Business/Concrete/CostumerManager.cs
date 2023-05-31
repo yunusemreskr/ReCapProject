@@ -26,12 +26,17 @@ namespace Business.Concrete
 
         public IDataResult<List<Costumer>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Costumer>>(_costumerDal.GetAll());
         }
 
-        public IDataResult<Costumer> GetUsersByCompanyName(string companyname)
+        public IDataResult<List<Costumer>> GetUsersByCompanyName(string companyname)
         {
-            throw new NotImplementedException();
+            var result = _costumerDal.GetAll().FirstOrDefault(c => c.CompanyName == companyname);
+            if (result == null)
+            {
+                return new ErrorDataResult<List<Costumer>>("Böyle bir şirket yok");
+            }
+            return new SuccessDataResult<List<Costumer>>(_costumerDal.GetAll(c => c.CompanyName == companyname));
         }
     }
 }
