@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Business.Constants;
+using Core.Utilities.Helpers.FileHelper;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -27,7 +28,7 @@ internal class Program
         //Console.WriteLine("----------------------------------------------------");
 
 
-        DetailTest();
+        //DetailTest();
         //GetAll();
         //GetByColorId();
         //Add();
@@ -49,15 +50,21 @@ internal class Program
         //CostumerManager costumerManager = new CostumerManager(new EfCostumerDal());
         //costumerManager.Add(new Costumer{UserId=1 , CompanyName="No211" });
 
-        RentalManager rentalManager = new RentalManager(new EfRentalDal());
+        //RentalManager rentalManager = new RentalManager(new EfRentalDal());
         //rentalManager.Add(new Rental {CarId=2, CostumerId=1, Id=1 , RentDate=DateTime.Now, ReturnDate=new DateTime(2023,06,05) });
 
-        var result =rentalManager.GetRentDetails();
-        foreach (var rental in result.Data)
-        {
-            Console.WriteLine(rental.CarId + " / " + rental.BrandName + " / " + rental.FirstName + " / " + rental.LastName + " / " +
-                rental.CompanyName + " / " +  rental.ReturnDate);
-        }
+        //var result =rentalManager.GetRentDetails();
+        //foreach (var rental in result.Data)
+        //{
+        //    Console.WriteLine(rental.CarId + " / " + rental.BrandName + " / " + rental.FirstName + " / " + rental.LastName + " / " +
+        //        rental.CompanyName + " / " +  rental.ReturnDate);
+        //}
+
+        //CarImageManager carImage = new CarImageManager(new EfCarImageDal(), new FileHelperManager());
+        //carImage.Add(new CarImage { CarId = 2, Date = DateTime.Now, Id = 1, ImagePath = "auto - car - logo - template - vector - icon.jpg" });
+
+
+
 
     }
 
