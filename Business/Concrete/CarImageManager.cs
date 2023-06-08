@@ -45,7 +45,7 @@ namespace Business.Concrete
         {
             _fileHelper.Delete(PathConstants.ImagesPath + carImage.ImagePath);
             _carImageDal.Delete(carImage); 
-            return new SuccessResult();
+            return new SuccessResult("Başarıyla silindi");
         }
 
         public IDataResult<List<CarImage>> GetAll()
@@ -56,7 +56,7 @@ namespace Business.Concrete
         public IDataResult<List<CarImage>> GetByCarId(int carId)
         {
             var result = BusinessRules.Run(CheckCarImage(carId));
-            if (result!=null)
+            if (result==null)
             {
                 return new ErrorDataResult<List<CarImage>>(GetDefaultCarImage(carId).Data);
             }
@@ -73,6 +73,7 @@ namespace Business.Concrete
         public IResult Update(IFormFile file, CarImage carImage)
         {
             carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath);
+            carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }

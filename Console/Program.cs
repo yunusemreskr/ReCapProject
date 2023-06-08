@@ -60,8 +60,8 @@ internal class Program
         //        rental.CompanyName + " / " +  rental.ReturnDate);
         //}
 
-        CarImageManager carImage = new CarImageManager(new EfCarImageDal(), new FileHelperManager());
-        carImage.Add(new CarImage { CarId = 2, Date = DateTime.Now, Id = 1, ImagePath = "auto - car - logo - template - vector - icon.jpg"},new FileStream { Name= });
+        //CarImageManager carImage = new CarImageManager(new EfCarImageDal(), new FileHelperManager());
+        //carImage.Add(new CarImage { CarId = 2, Date = DateTime.Now, Id = 1, ImagePath = "auto - car - logo - template - vector - icon.jpg"},new FileStream { Name= });
         
 
 
