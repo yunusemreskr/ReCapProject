@@ -56,13 +56,12 @@ namespace Business.Concrete
         public IDataResult<List<CarImage>> GetByCarId(int carId)
         {
             var result = BusinessRules.Run(CheckCarImage(carId));
-            if (result==null)
+            if (result!=null)
             {
                 return new ErrorDataResult<List<CarImage>>(GetDefaultCarImage(carId).Data);
             }
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c=>c.CarId==carId));
                 
-                //C:\Users\mimar\OneDrive\Masaüstü\auto - car - logo - template - vector - icon.jpg
         }
 
         public IDataResult<CarImage> GetByImageId(int imageId)
