@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,9 @@ namespace WebAPI.Controllers
             _carService = carService;
         }
 
+        
         [HttpGet("getall")]
+        [Authorize(Roles = "product.list")]
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
