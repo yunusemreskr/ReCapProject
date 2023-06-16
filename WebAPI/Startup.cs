@@ -20,6 +20,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Utilities.IoC;
+using Core.Extensions;
+using Core.DependencyResolvers;
 
 namespace WebAPI
 {
@@ -38,6 +41,9 @@ namespace WebAPI
             //AOP
             //Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container
             services.AddControllers();
+
+            services.AddCors();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -55,6 +61,12 @@ namespace WebAPI
                     };
                 });
 
+            //Bu resolvers ICoreModule arrayi ile farklı modulleri getirir 
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
@@ -70,6 +82,8 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
