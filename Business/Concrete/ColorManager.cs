@@ -23,6 +23,7 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
+        
         [SecuredOperation("admin")]
         public IResult Add(Color color)
         {
@@ -47,6 +48,7 @@ namespace Business.Concrete
             
         }
 
+        [CacheAspect]
         public IDataResult<List<Color>> GetCarsByColorId(int id)
         {
             var result = _colorDal.GetAll().FirstOrDefault(c => c.ColorId == id);

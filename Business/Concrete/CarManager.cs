@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Validation;
 using Core.Entities;
 using Core.Utilities.Results;
@@ -27,6 +29,8 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarValidation))]
         public IResult Add(Car car)
         {
@@ -45,6 +49,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==20)
